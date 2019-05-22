@@ -1,41 +1,55 @@
-import React from 'react';
-import {NavLink} from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import Login_HOC from "./Login_HOC";
+import { withRouter } from "react-router-dom";
 
-export default function Navbar(){
-    return(
-        <Nav>
-            <div>
-                <NavLink exact to='/'>
-                    Home
-                </NavLink>
-                <NavLink to='/manage'>Manage Recipes</NavLink>
+import ChefCard from "./chefs/ChefCard";
+import RecipeCard from "./recipes/RecipeCard";
+
+// class component code here:
+class ManagePage extends React.Component {
+    state = {
+        chef: this.props.chefs[0],
+        recipes: this.props.recipes.filter(
+          recipe => recipe.chef.name === this.props.chefs[0].name
+        )
+      };
+    
+      editRecipe = (ev, name) => {
+        console.log(name);
+        this.props.history.push(`/edit/${name}`);
+      };
+    
+      render() {
+        return (
+          <Manage>
+            <h1>Manage Page</h1>
+            <button onClick={this.props.logOut}>Log Out</button>
+            <ChefCard chef={this.state.chef} />
+    
+            <div className="recipe-list">
+              {this.state.recipes.map(recipe => (
+                <RecipeCard recipe={recipe} viewRecipe={this.editRecipe} />
+              ))}
             </div>
-        </Nav>
-    );
+          </Manage>
+        );
+    }
 }
 
-const Nav = styled.nav`
-  position: fixed;
-  top: 0;
-  background: white;
-  width: 100%;
-  height: 70px;
+export default Login_HOC(withRouter(ManagePage));
+
+const Manage = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  box-shadow: 0 0 5px 0 black;
-  div {
+  h1 {
     margin: 0 auto;
-    width: 85%;
-    max-width: 800px;
+  }
+  .recipe-list {
     display: flex;
-    justify-content: space-between;
-    a {
-      font-size: 20px;
-      text-decoration: none;
-    }
-    .active {
-      text-decoration: underline;
-    }
+    flex-wrap: wrap;
+    max-width: 1500px;
+    justify-content: center;
   }
 `;

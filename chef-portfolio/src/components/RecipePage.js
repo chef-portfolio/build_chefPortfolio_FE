@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import {withRouter} from './chefs/ChefCard';
+import { withRouter } from "react-router-dom";
+import ChefCard from "./chefs/ChefCard";
 
-class RecipePage extends React.Components{
+// class components code here:
+class RecipePage extends React.Component{
     state = {
         recipe: this.props.recipes.filter(
             rec => rec.name === this.props.match.params.id
         )[0]
-    };
+    }; 
 
 render() {
     return (
