@@ -2,7 +2,7 @@
  import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
-//work in progress
+
 import NavBar from "./components/NavBar";
 import SearchPage from "./components/SearchPage";
 import ManagePage from "./components/ManagePage";
