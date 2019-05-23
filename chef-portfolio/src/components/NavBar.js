@@ -7,7 +7,7 @@ export default function NavBar(){
         <Nav>
             <div>
                 <NavLink exact to='/'>
-                    Home
+                    Home <p> Test string</p>
                 </NavLink>
                 <NavLink to='/manage'>Manage Recipes</NavLink>
             </div>
