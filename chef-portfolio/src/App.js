@@ -22,6 +22,7 @@ function App() {
   return ( 
     <Router>
       <div className="App">
+      <h1> Test string </h1>
         <NavBar />
         <Route 
           exact
